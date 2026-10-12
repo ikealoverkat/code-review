@@ -4,5 +4,5 @@ description: The first ever ICS3UR lesson. Learn how to store data (numbers, let
 order: 1
 ---
 
-## Variables & Data Types
+# Variables & Data Types
 what is a variable? great question.

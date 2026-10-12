@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
-import { getDoc } from '#lib/docs/index.ts';
+import { getDoc } from '#lib';
 
 export const load: PageLoad = ({ params }) => {
 	const doc = getDoc(params.slug);

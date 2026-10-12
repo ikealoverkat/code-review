@@ -1,6 +1,6 @@
 <div>
 	<h1>Welcome to Introduction to Computer Science (ICS3UR!)</h1>
-	<p>
+	<p class="py-8">
 		Hi! I'm <a href="https://kat.wang" target="_blank">Kat</a>, a Grade 11 Student at Earl of March
 		SS. I'm currently taking ICS3UR - Introduction to Computer Science, and this is a summary of all
 		the topics covered so far!
@@ -12,7 +12,7 @@
 		We learned lots of concepts, and we can use those concepts to make cool programs. for example, we
 		learned about:
 	</p>
-	<ul>
+	<ul class="px-8 py-4">
 		<li>• getting user input</li>
 		<li>• doing math with Java programs</li>
 		<li>• determining whether conditions are true or false</li>
@@ -23,9 +23,7 @@
 	<p>
 		and we can use combine those concepts in different ways to make loads of different, useful
 		programs.
-		<br />
-		The following pages of this website go into further detail on those topics!
 		<br /><br />
-		Here's a table of contents:
+		The following pages of this website go into further detail on those topics. Click around on the sidebar!
 	</p>
 </div>

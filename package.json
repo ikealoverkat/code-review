@@ -32,5 +32,10 @@
 	"imports": {
 		"#lib": "./src/lib/index.js",
 		"#lib/*": "./src/lib/*"
+	},
+	"dependencies": {
+		"@codemirror/lang-java": "^6.0.2",
+		"codemirror": "^6.0.2",
+		"svelte-codemirror-editor": "^2.1.0"
 	}
 }
