@@ -40,3 +40,6 @@ a {
 a:hover {
     text-decoration: underline wavy;
 }
+.editor :global(.cm-content) {
+    font-size: 20px;
+}

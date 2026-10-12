@@ -5,7 +5,7 @@
     const Doc = $derived(getDoc(data.slug)?.component);
 </script>
 
-<div class="min-w-[50vw]">
+<div class="min-w-[40vw]">
     {#if Doc}
         <Doc />
     {/if}
