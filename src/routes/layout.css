@@ -1,0 +1,42 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@theme {
+    --color-pink-light: rgba(252, 237, 248, 1);
+    --color-purple-light: rgba(230, 224, 241, 1);
+    --color-pink-mid: rgb(221, 103, 217);
+    --color-navy: rgb(33, 28, 54);
+    --color-pink-dark: rgba(144, 52, 117, 1);
+}
+
+h1, h2, h3, p, a, ul, li, blockquote {
+    font-family: 'Helvetica', sans-serif;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--color-pink-dark);
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-pink-dark);
+}
+
+p, ul, li {
+    font-size: 1.5rem;
+    color: var(--color-navy);
+}
+
+a {
+    font-size: 1.5rem;
+    color: var(--color-pink-mid);
+    font-style: italic;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: underline wavy;
+}
