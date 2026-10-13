@@ -1,43 +1,157 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import { EditorView, basicSetup } from 'codemirror';
-    import { keymap } from '@codemirror/view';
-    import { java } from '@codemirror/lang-java';
-    import { EditorState } from '@codemirror/state';
-    import { defaultKeymap } from '@codemirror/commands';
+	import { onMount } from 'svelte';
+	import { EditorView, basicSetup } from 'codemirror';
+	import { keymap } from '@codemirror/view';
+	import { java } from '@codemirror/lang-java';
+	import { EditorState } from '@codemirror/state';
+	import { defaultKeymap } from '@codemirror/commands';
+	import { runJava } from '#lib/java-simulator.ts';
 
-    let editorContainer: HTMLDivElement;
+	const STARTER_CODE = `public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, world!");
+    }
+}`;
 
-    onMount(() => {
-        const startState = EditorState.create({
-            doc: 'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, world!");\n    }\n}',
-            extensions: [
-                basicSetup,
-                keymap.of(defaultKeymap),
-                java()
-            ]
-        });
+	let editorContainer: HTMLDivElement;
+	let view: EditorView | undefined;
 
-        const view = new EditorView({
-            state: startState,
-            parent: editorContainer
-        });
+	let output = $state('');
+	let error = $state<string | null>(null);
+	let hasRun = $state(false);
 
-        return () => view.destroy();
-    });
+	onMount(() => {
+		const startState = EditorState.create({
+			doc: STARTER_CODE,
+			extensions: [basicSetup, keymap.of(defaultKeymap), java()]
+		});
+
+		view = new EditorView({
+			state: startState,
+			parent: editorContainer
+		});
+
+		return () => view?.destroy();
+	});
+
+	function run() {
+		const source = view ? view.state.doc.toString() : '';
+		const result = runJava(source);
+		output = result.output;
+		error = result.error;
+		hasRun = true;
+	}
+
+	function clearOutput() {
+		output = '';
+		error = null;
+		hasRun = false;
+	}
+
+	const display = $derived(
+		!hasRun
+			? "Press Run to see your program's output."
+			: error
+				? error
+				: output.length > 0
+					? output
+					: '(no output)'
+	);
 </script>
 
 <div class="p-12 min-w-[35vw]">
-    <h1>Playground</h1>
-    <div bind:this={editorContainer} class="editor"></div>
+	<h1>Playground</h1>
+	<div bind:this={editorContainer} class="editor"></div>
+
+	<div class="controls">
+		<button type="button" class="run-button" onclick={run}>Run</button>
+		<span class="hint">Supports System.out.print and System.out.println</span>
+	</div>
+
+	<section class="output-section">
+		<div class="output-header">
+			<h2>Output</h2>
+			<button type="button" class="clear-button" onclick={clearOutput}>Clear</button>
+		</div>
+		<pre class="output-panel">{display}</pre>
+	</section>
 </div>
 
 <style>
-    .editor {
-        border: 1px solid #555;
-        border-radius: 8px;
-        overflow: hidden;
-        min-height: 500px;
-    }
+	.editor {
+		border: 1px solid #555;
+		border-radius: 8px;
+		overflow: hidden;
+		min-height: 500px;
+	}
+
+	.controls {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-top: 1rem;
+	}
+
+	.run-button {
+		background: var(--color-pink-dark);
+		color: white;
+		border: none;
+		border-radius: 8px;
+		padding: 0.6rem 1.8rem;
+		font-family: 'Helvetica', sans-serif;
+		font-size: 1.1rem;
+		font-weight: bold;
+		cursor: pointer;
+	}
+
+	.run-button:hover {
+		background: var(--color-pink-mid);
+	}
+
+	.hint {
+		color: var(--color-navy);
+		font-size: 0.9rem;
+	}
+
+	.output-section {
+		margin-top: 1rem;
+	}
+
+	.output-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.output-header h2 {
+		margin: 0;
+	}
+
+	.clear-button {
+		background: transparent;
+		border: 1px solid var(--color-pink-dark);
+		color: var(--color-pink-dark);
+		border-radius: 6px;
+		padding: 0.25rem 1rem;
+		font-family: 'Helvetica', sans-serif;
+		font-size: 0.9rem;
+		cursor: pointer;
+	}
+
+	.clear-button:hover {
+		background: var(--color-pink-light);
+	}
+
+	.output-panel {
+		background: var(--color-navy);
+		color: var(--color-pink-light);
+		border-radius: 8px;
+		padding: 1rem;
+		margin: 0.5rem 0 0;
+		min-height: 120px;
+		font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+		font-size: 1rem;
+		white-space: pre-wrap;
+		overflow-x: auto;
+	}
 </style>
-```
