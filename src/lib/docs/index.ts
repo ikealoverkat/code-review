@@ -49,7 +49,8 @@ export const docs: Doc[] = Object.entries(modules)
             order: typeof meta.order === 'number' ? meta.order : 0,
             component: module.default
         } satisfies Doc;
-    }) //find all the docs in the /docs folder
+    })
+    .sort((a, b) => a.order - b.order); //find all the docs in the /docs folder, ordered by their order field
 
 export const defaultDoc: Doc | undefined = docs[0];
 
