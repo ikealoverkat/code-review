@@ -9,11 +9,14 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<link rel="icon" href="/laptop2.png" />
+	<title>kat's ICS3UR code review</title>
 </svelte:head>
 
-<div class="flex flex-row gap-8">
-	<Sidebar />
+<div class="flex flex-row gap-8 bg-pink-light">
+	<div class="sticky">
+		<Sidebar />
+	</div>
 	<div class="m-12">
 		{@render children()}
 	</div>

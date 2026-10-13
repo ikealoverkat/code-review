@@ -19,6 +19,7 @@
 	let output = $state('');
 	let error = $state<string | null>(null);
 	let hasRun = $state(false);
+	let input = $state('');
 
 	onMount(() => {
 		const startState = EditorState.create({
@@ -36,7 +37,7 @@
 
 	function run() {
 		const source = view ? view.state.doc.toString() : '';
-		const result = runJava(source);
+		const result = runJava(source, input);
 		output = result.output;
 		error = result.error;
 		hasRun = true;
@@ -59,14 +60,24 @@
 	);
 </script>
 
-<div class="p-12 min-w-[35vw]">
+<div class="sticky top-0 h-screen min-w-[35vw] overflow-y-auto p-12 outline-1 outline-pink-dark container">
 	<h1>Playground</h1>
 	<div bind:this={editorContainer} class="editor"></div>
 
 	<div class="controls">
 		<button type="button" class="run-button" onclick={run}>Run</button>
-		<span class="hint">Supports System.out.print and System.out.println</span>
+		<p class="hint">
+			Supports variables, if/else, loops, switch, Scanner input, and System.out.print / println
+		</p>
 	</div>
+
+	<section class="input-section">
+		<div class="input-header">
+			<h2>Input</h2>
+		</div>
+		<p class="input-hint">Text the Scanner reads, like keyboard input (one value per line).</p>
+		<textarea class="input-panel" bind:value={input} placeholder="5&#10;10"></textarea>
+	</section>
 
 	<section class="output-section">
 		<div class="output-header">
@@ -75,10 +86,17 @@
 		</div>
 		<pre class="output-panel">{display}</pre>
 	</section>
+
+	<img src="/laptop1.png" alt="Laptop" class="mx-auto w-[30%] max-w-md" />
 </div>
 
 <style>
+	.container {
+		background: color-mix(in srgb, var(--color-pink-mid) 10%, transparent);
+	}
+
 	.editor {
+		background: white;
 		border: 1px solid #555;
 		border-radius: 8px;
 		overflow: hidden;
@@ -111,6 +129,34 @@
 	.hint {
 		color: var(--color-navy);
 		font-size: 0.9rem;
+	}
+
+	.input-section {
+		margin-top: 1rem;
+	}
+
+	.input-header h2 {
+		margin: 0;
+	}
+
+	.input-hint {
+		color: var(--color-navy);
+		font-size: 0.85rem;
+		margin: 0.25rem 0;
+	}
+
+	.input-panel {
+		width: 100%;
+		box-sizing: border-box;
+		background: white;
+		color: var(--color-navy);
+		border: 1px solid #555;
+		border-radius: 8px;
+		padding: 0.6rem;
+		min-height: 80px;
+		font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+		font-size: 1rem;
+		resize: vertical;
 	}
 
 	.output-section {
