@@ -1,6 +1,6 @@
 ---
 title: Errors
-description: Nothing goes wrong until it does. Learn the two kinds of errors and how to survive them with try-catch.
+description: types of errors & how to avoid them (if-else, try-catch)
 order: 6
 ---
 
