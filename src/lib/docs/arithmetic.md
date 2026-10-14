@@ -1,82 +1,55 @@
 ---
 title: Arithmetic
-description: Do math in Java! Learn the operators, integer division, and how to cast between number types.
+description: Do math in Java: learn about operators, integer division, and type casting.
 order: 2
 ---
-
 # Arithmetic
+Arithmetic allows Java programs to do math! You can use arithmetic operators to calculate totals, averages, sums, distances, and more. Plus, programs can do math way faster than if you were to do it by hand.
 
-## what are the math operators?
-Java has the same basic math operators you know from math class:
+Java supports the following arithmetic operators:
 
-| operator | meaning            | example         |
-| -------- | ------------------ | --------------- |
-| `+`      | addition           | `3 + 4` → 7     |
-| `-`      | subtraction        | `10 - 4` → 6    |
-| `*`      | multiplication     | `6 * 7` → 42    |
-| `/`      | division           | `20 / 5` → 4    |
-| `%`      | remainder (modulo) | `17 % 5` → 2    |
-
-You put them together with variables and numbers to make expressions:
+| operator | operation           | example | result |
+| -------- | ------------------- | ------- | ------ |
+| +        | addition            | 5 + 3   | 8      |
+| -        | subtraction         | 5 - 3   | 2      |
+| *        | multiplication      | 5 * 3   | 15     |
+| /        | division            | 6 / 3   | 2      |
+| %        | modulus (remainder) | 7 % 3   | 1      |
+**"What in the world is a modulus???"** The modulus operator (%) returns the remainder after division. So, 10 % 5 would return 0, but 11 % 5 would return 1. You can use it to check if a number is a factor of another one. It can also help determine whether a number is even or odd.
 ```
-int score = 20;
-int bonus = 5;
-int total = score + bonus;
-System.out.println(total); // 25
+System.out.println(10 % 2); // returns 0, which means 10 is even
+System.out.println(15 % 2); // returns 1, which is not 0. therefore, 15 is not even
 ```
 
-## division works differently for ints!
-If both numbers are `int`s, Java does **integer division**: it chops off the decimal part.
-
+## integer division is special
+When you divide two `int`s in Java, unlike in normal math where you can either get an integer or a decimal number, Java just chops off the decimal part. No rounding, it just chops the decimal off.
 ```
-int x = 7 / 2;   // 3  (not 3.5!)
-int y = 9 / 10;  // 0
-```
-
-If you want a decimal answer, make at least one of the numbers a `double`:
-```
-double d = 7.0 / 2;  // 3.5
-double e = 7 / 2.0;  // 3.5
+int i = 7 / 2 // returns 3, not 3.5
+int k = 9 / 10 // returns 0
 ```
 
-## the remainder operator `%`
-`%` gives you the remainder after division. It's super useful for checking if something is even or odd:
-
+If you want a decimal number, make at least one of the numbers a `double`.
 ```
-int x = 17 % 5;     // 17 = 3*5 + 2, so x is 2
-int even = 8 % 2;   // 0  (even numbers have remainder 0 when divided by 2)
-int odd  = 7 % 2;   // 1
+double j = 7.0 / 2 // returns 3.5
+double h = 9 / 10.0  // returns 0.9
 ```
 
 ## order of operations
-Java follows BEDMAS like math class. Use parentheses to make it obvious:
+Java follows BEDMAS just like regular math!! Follow BEDMAS to make sure that your programs run the way you want!!!
 ```
-int a = 2 + 3 * 4;   // 14 (multiplication first)
-int b = (2 + 3) * 4; // 20 (parens first)
-```
-
-## type casting
-Sometimes you have a number in one type but need it in another. You can force it with **casting**:
-
-```
-double d = 7.5;
-int x = (int) d;   // x is 7 (the decimal part is dropped)
-int a = 7;
-double b = (double) a; // b is 7.0
+int k = 2 + 3 * 4 // returns 14 (multiplication first)
+int s = (2 + 3) * 4 // returns 20 (brackets first)
 ```
 
-Remember: casting a `double` to an `int` **truncates** — it just cuts off the decimal part, it doesn't round.
+## what is type casting?
+What if you have data in one type but need it in another? You can force it by **type casting**.
+Put the type in brackets before the value you want to cast. For example:
+```
+int i = (int) 7.5; // i will be 7. you cast i to an int by putting the (int) infront of the value. 
 
-```
-int rounded = (int) 7.9; // 7, not 8!
-```
-
-## try it out
-```
-int minutes = 135;
-int hours = minutes / 60;
-int extra = minutes % 60;
-System.out.println("That's " + hours + " hours and " + extra + " minutes.");
+// another example:
+double d = 12.65;
+int k = (int) d; // k will be 12.
 ```
 
-Play with the numbers and the operators in the playground to see what changes.
+Try some arithmetic operations in the playground!

@@ -27,6 +27,13 @@ h2 {
     color: color-mix(in srgb, var(--color-pink-dark) 40%, var(--color-pink-mid) 60%);
 }
 
+h3 {
+    margin: 8px 8px;
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: color-mix(in srgb, var(--color-pink-dark) 60%, var(--color-navy) 40%);
+}
+
 p, ul, li {
     font-size: 1.5rem;
     color: var(--color-navy);
