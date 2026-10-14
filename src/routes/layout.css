@@ -14,7 +14,7 @@ h1, h2, h3, p, a, ul, li, blockquote {
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: bold;
     color: var(--color-pink-dark);
     margin: 12px 0;
@@ -22,25 +22,25 @@ h1 {
 
 h2 {
     margin: 10px 0;
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: bold;
     color: color-mix(in srgb, var(--color-pink-dark) 40%, var(--color-pink-mid) 60%);
 }
 
 h3 {
     margin: 8px 8px;
-    font-size: 1.75rem;
+    font-size: 1.4rem;
     font-weight: bold;
     color: color-mix(in srgb, var(--color-pink-dark) 60%, var(--color-navy) 40%);
 }
 
 p, ul, li {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: var(--color-navy);
 }
 
 a {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: var(--color-pink-mid);
     font-style: italic;
     text-decoration: underline;
@@ -55,7 +55,7 @@ a:hover {
 
 table {
     margin: 20px 0;
-    font-size: 1.5rem;
+    font-size: 1.15rem;
     font-family: 'Helvetica', sans-serif;
     border-radius: 32px;
     transition-duration: 200ms;
@@ -84,7 +84,8 @@ table td {
 pre {
     margin: 12px 15px;
     padding: 16px;
-    font-size: 1.25rem;
+    font-size: 1rem;
+    text-wrap: wrap;
     background-color: color-mix(in srgb, var(--color-navy) 75%, transparent);
     color: color-mix(in srgb, var(--color-pink-light) 80%, white);
     border-radius: 12px;

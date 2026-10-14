@@ -6,88 +6,80 @@ order: 5
 
 # Strings
 
-A **String** is a sequence of characters — basically text. In Java, `String` is a class, with a capital S, and it has a bunch of built-in methods that make working with text easy.
-
+A **String** (yes the capital S is important) is an array of chars (a list of characters). For example:
 ```
-String name = "Kat";
-System.out.println(name);
+String name = "Kat"; //contains the characters 'K', 'a', and 't'
+System.out.println(name); //prints Kat in the console
 ```
+*You have to use double quotation marks (`"`) when declaring a string.*
 
-## arithmetic... with Strings...? (concatenation vs. addition)
-The `+` operator does double duty. With numbers it **adds**; with Strings it **concatenates** (glues text together).
-
+## Arithmetic with Strings..?? (concatenation)
+We know that the `+` operator is usually used for addition, but when you try to add two Strings together, it actually **concatenates**: meaning it glues the text together.
+For example:
 ```
-int a = 5;
-int b = 3;
-System.out.println(a + b);         // 8 (addition!)
-
-String x = "5";
-String y = "3";
-System.out.println(x + y);         // "53" (concatenation!)
-
-System.out.println("5" + 3);       // "53" — one String turns it into text
-System.out.println(5 + 3);         // 8
+String greeting = "What's up, ";
+String name = "Shreya";
+System.out.println(greeting + name); //prints What's up, Shreya in the console
 ```
 
-Tip: when a String meets a number, the whole thing becomes text. This is why printing is so convenient:
+Even if there are other integers in the expression, once a string is added, everything else will also be concatenated!!
 ```
-System.out.println("You have " + 3 + " lives left."); // "You have 3 lives left."
+int a = 1;
+int b = 2;
+int c = 3;
+String greeting = "Hello";
+System.out.println(a + b + greeting + c) //prints 3Hello3: 1 + 2 = 3, then concatenates Hello, then concatenates 3.
 ```
 
-## comparing Strings (we can't simply use ==!)
-With numbers, `==` checks if they're equal. With Strings, `==` checks if they're the *same object*, which is a lie you'll discover.
+## comparing Strings
+
+With numbers, `==` checks if they're equal. With Strings, `==` checks if they're the *same object*, so even if two Strings are `"kat"`, when compared, the program will return `false`.
 
 ```
+
 String a = "cat";
 String b = "cat";
-System.out.println(a == b);        // usually false in real Java. Not what you want!
+
+System.out.println(a == b); //will print false!!!
 ```
 
 To compare the *text inside* two Strings, use the `.equals()` method:
 
 ```
+
 String a = "cat";
 String b = "cat";
-System.out.println(a.equals(b));       // true
-System.out.println(b.equals("dog"));   // false
+
+System.out.println(a.equals(b));       // true
+System.out.println(b.equals("dog"));   // false
+
+```
+with the `.equals()` method, the case matters. So:
+```
+String a = "Cat";
+String b = "cat";
+
+System.out.println(a.equals(b)); // false
 ```
 
-And to ignore uppercase/lowercase, use `.equalsIgnoreCase()`:
-```
-String ans = "YES";
-System.out.println(ans.equalsIgnoreCase("yes")); // true
+So, to ignore uppercase/lowercase, use `.equalsIgnoreCase()`:
 ```
 
-Use pattern: when checking user input, almost always compare like this:
+String a = "cat";
+System.out.println(cat.equalsIgnoreCase("CAT")); // true
+
 ```
-if (input.equals("quit")) {
-    System.out.println("Goodbye!");
-}
-```
+
 
 ## more String methods
-Here's a cheat sheet of the common ones:
+Here's a table with more String methods & what they mean.
+There are loads of String methods out there: search it up online and see what you get!! These are just some useful ones.
 
-| method                  | what it does                                | example                               |
-| ----------------------- | ------------------------------------------- | ------------------------------------- |
-| `length()`              | how many characters                         | `"hello".length()` → 5                |
-| `charAt(i)`             | the char at position i (starting at 0)      | `"hello".charAt(1)` → `'e'`           |
-| `substring(a, b)`       | the text from a up to (not including) b     | `"hello".substring(1, 4)` → "ell"     |
-| `indexOf(text)`         | position where text first appears, -1 if not| `"hello".indexOf("l")` → 2            |
-| `toUpperCase()`         | all caps                                    | `"hi".toUpperCase()` → "HI"           |
-| `toLowerCase()`         | all lowercase                               | `"HI".toLowerCase()` → "hi"           |
-| `equalsIgnoreCase(t)`   | equals, ignoring case                       | `"YES".equalsIgnoreCase("yes")` → true|
-| `contains(text)`        | does this contain text?                     | `"hello".contains("ell")` → true      |
-| `trim()`                | removes spaces at the start and end         | `"  hi  ".trim()` → "hi"              |
-
-Characters are numbered from **0**, not 1:
-```
-String word = "java";
-System.out.println(word.charAt(0)); // 'j'
-System.out.println(word.charAt(3)); // 'a'
-```
-
-## extra practice
-- Ask for the user's name and print how many letters it has: `name.length()`.
-- Print someone's initials: take the first char of first and last name.
-- If the user types the magic word (case-insensitive), print a secret message.
+| method            | what it does                                                                       | example                           |
+| ----------------- | ---------------------------------------------------------------------------------- | --------------------------------- |
+| `length()`        | finds how many characters are in the String                                        | `"hello".length();` → 5           |
+| `charAt(int)`     | finds the char at position `int` (starting at 0)                                   | `"hello".charAt(0)` → 'h'         |
+| `substring(a, b)` | the text from a up to (not including) b                                            | `"hello".substring(1, 4)` → "ell" |
+| `indexOf(text)`   | position where `text` **first** appears, returns -1 if `text` is not in the String | `"hello".indexOf("l")` → 2        |
+| `toUpperCase()`   | all caps                                                                           | `"hello".toUpperCase()` → "HELLO" |
+| `toLowerCase()`   | all lowercase                                                                      | `"YO".toLowerCase()` -> "yo"      |

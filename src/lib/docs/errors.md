@@ -5,67 +5,78 @@ order: 6
 ---
 
 # Errors
-
-Bugs happen to everyone. The good news: there are only two main flavours, and each is easy to handle once you know what to look for.
-
+Errors, also known as exceptions, are problems in your code. oh no!!!!!!
 ## syntax vs. logic errors
-
 ### syntax errors
-A **syntax error** is a typo or a broken rule of the language. The program won't compile — Java literally refuses to run it until you fix the code.
+A syntax error in Java is like a grammar error in English. Syntax errors are compile-time errors: the program won't compile or run until you fix the error.
 
-Common syntax errors:
-- missing semicolon: `int x = 5` (forgot `;`)
-- missing closing bracket: `if (x > 0) {` (never closed with `}`)
-- misspelling a keyword or variable name
-- wrong quotation marks
-
+**Common syntax errors:**
+- missing semicolon `int x = 5` (forgot `;`)
+- missing closing bracket `if (x > 0 {` 
+- misspelling a variable name
 ```
-int x = 5;             // forgotten semicolon → syntax error
-System.out.println("hi)  // mismatched quotes → syntax error
+int number = 5;
+System.out.println(nmuber); // spelling mistake; the code won't run
 ```
 
-The compiler tells you the line number, so these are usually quick to fix.
-
+Syntax errors are usually easy to fix because the compiler will provide an error message with the exact line where the exception occurred.  
 ### logic errors
-A **logic error** is when the program runs fine but gives the wrong answer. The computer isn't confused — your plan had a flaw.
-
+A logic error is a runtime error: the program runs fine but it doesn't do what you wanted it to do. For example, if you made a program to add two numbers and it actually subtracts the numbers, that'd be a logic error.
 ```
-// You want to convert Celsius to Fahrenheit.
-double celsius = 20;
-double fahrenheit = celsius - 32 * 5 / 9;   // wrong formula!
-System.out.println(fahrenheit);             // runs, but gives a silly number
+// This program intends to find the average of two numbers.
+int num1, num2;
+System.out.println(num1 + num2 / 2); //due to BEDMAS, the program will first divide num2 by 2 before adding num1. This is not the logic we want!!!
+
+// corrected version:
+System.out.println((num1 + num2) / 2); //brackets added so first we add the 2 numbers, then divide by 2.
 ```
+There's no error message for a logic error. Read your code carefully and test your code periodically instead of coding everything in one go and having loads of errors to fix!
 
-There's no error message for a logic error. Debugging tips:
-- print intermediate values with `System.out.println()` to trace what's happening
-- read your code out loud, line by line
-- check your comparisons and order of operations
+## error checking with if-else & try-catch statements
+Sometimes, errors happen when the program is running, like when you're using the Scanner to get an `int` but the user inputs `twelve`. We can use if-else statements and try-catch statements to grab these errors and keep going instead of crashing.
 
-## try-catch statement
-Some errors only happen while the program is running — like when a user types `abc` where you asked for a number. A **try-catch** lets you grab the error and keep going instead of crashing.
-
+When error checking with **if-else**, use the `hasNextInt()` method and only run the desired code if `hasNextInt()` returns `true`. Otherwise, send the user an error message.
 ```
 import java.util.Scanner;
-Scanner sc = new Scanner(System.in);
 
-try {
-    System.out.print("Enter a number: ");
-    int num = sc.nextInt();
-    System.out.println("You picked " + num);
-} catch (Exception e) {
-    System.out.println("That wasn't a number!");
+Scanner console = new Scanner(System.in);
+int age;
+
+System.out.println("how old are you?" );
+if (console.hasNextInt()) {
+	System.out.println("you are " + age + " years old");
+} else {
+	System.out.println("input an integer!");
 }
 ```
 
-How it works:
-- Code inside `try { ... }` runs normally.
-- If anything inside it throws an error, the program jumps straight to `catch`.
-- `catch (Exception e)` catches *any* exception — the error details land in `e`.
+There's actually a bunch of methods like this:
 
-A more specific catch (like `InputMismatchException`) only catches that one type of error.
+| method            | what it checks for           |
+| ----------------- | ---------------------------- |
+| `hasNextInt()`    | if the user input an integer |
+| `hasNextDouble()` | if the user input an double  |
+| `hasNextLine`     | if the user input anything   |
 
-> Note: the playground currently supports a safe subset of Java. `try-catch` and many built-in exceptions may not run there yet — they work in real Java on your computer.
+### try-catch
+try-catch statements let you grab the error and keep going instead of crashing! They consist of two blocks: the `try` block and the `catch` block. The `catch` block must state the type of Exception it's trying to catch. When you run a try-catch statement, It first tries the code in the `try` block, and if an exception (error) occurs, it will run the code in the `catch` block instead. You can only have one `try` block, but you can have multiple `catch` blocks for different types of exceptions.
+For example:
+```
+import java.util.Scanner;
+Scanner console = new Scanner(System.in);
 
-## practice ideas
-- Ask for two numbers and divide them. What happens if the user enters 0? Can you catch it?
-- Write a program that intentionally has both a syntax error and a logic error, then fix each.
+try {
+    System.out.println("Enter a number: ");
+    int num = console.nextInt();
+    System.out.println("You picked " + num);
+} catch (InputMismatchException e) {
+	System.out.println("Exception: "  + e + "Input an integer.");
+} 
+catch (Exception e) {
+    System.out.println("Exception: " + e);
+}
+```
+In the `catch` blocks, we tell the user what the exception was by printing `e`.
+
+
+*Note: the try-catch & many built-in exceptions may not run in the playground because I made my own Java interpreter with Typescript and it doesn't have a LOT of things. Try it on IntelliJ/your own computer!*
