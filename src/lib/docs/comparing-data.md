@@ -19,23 +19,23 @@ However, when we're comparing data, we use **logical expressions.**
 logical expressions return `true` or `false`. We use operators in logical expressions to compare two values. 
 
 
-**Comparison operators** are similar to math class: we use the >, <, <=, >=, and == signs. Unlike in math, we DO NOT use single `=` signs to compare two values. We need to use two `==` signs, as a single `=` sign is used to assign values instead.
+**Comparison operators** are similar to math class: we use the &gt;, &lt;, &lt;=, &gt;=, and == signs. Unlike in math, we DO NOT use single `=` signs to compare two values. We need to use two `==` signs, as a single `=` sign is used to assign values instead.
 
 **Logical operators** combine comparisons to check multiple things at once.
 
 | operator | meaning | true when...              |
 | -------- | ------- | ------------------------- |
 | `&&`     | AND     | both sides are true       |
-| `\|\|`   | OR      | at least one side is true |
+| `||`   | OR      | at least one side is true |
 | `!`      | NOT     | the condition is false    |
 
 here are some examples of logical expressions:
 ```
 int age = 17;
-boolean canDrive = age >= 16; // true
-boolean teen = age >= 13 && age <= 19;   // true (AND)
+boolean canDrive = age &gt;= 16; // true
+boolean teen = age &gt;= 13 && age &lt;= 19;   // true (AND)
 boolean weekend = false;
-boolean party = weekend || age >= 18;    // false OR false -> false
+boolean party = weekend || age &gt;= 18;    // false OR false -&gt; false
 ```
 
 ## statements!!!!
@@ -47,7 +47,7 @@ An **if statement** runs some code only when a condition is true. Add `else` for
 ```
 int temperature = 30;
 
-if (temperature >= 30) {
+if (temperature &gt;= 30) {
     System.out.println("Super hot!");
 } else {
     System.out.println("Not that hot.");
@@ -61,11 +61,11 @@ You can chain more than two cases with `else if`:
 
 int mark = 95;
 
-if (mark >= 90) {
+if (mark &gt;= 90) {
     System.out.println("A");
-} else if (mark >= 75) {
+} else if (mark &gt;= 75) {
     System.out.println("B");
-} else if (mark >= 60) {
+} else if (mark &gt;= 60) {
     System.out.println("C");
 } else {
     System.out.println("Definitely need to study.");
@@ -81,7 +81,7 @@ You can put an if statement inside another if statement. So, you can check if a 
 int age = 17;
 boolean withParent = true;
 
-if (age >= 16) {
+if (age &gt;= 16) {
     System.out.println("can get a license!");
 } else {
     if (withParent) {
@@ -103,10 +103,10 @@ System.out.println("pick an integer from 1-3: ");
 int choice = console.nextInt();
 
 switch (choice) {
-	case 1 -> System.out.println("you picked rock.");	
-	case 2 -> System.out.println("you picked paper.");	
-	case 3 -> System.out.println("you picked scissors.");
-	default -> System.out.println("you didn't input an integer from 1-3. try again");
+	case 1 -&gt; System.out.println("you picked rock.");	
+	case 2 -&gt; System.out.println("you picked paper.");	
+	case 3 -&gt; System.out.println("you picked scissors.");
+	default -&gt; System.out.println("you didn't input an integer from 1-3. try again");
 } 
 ```
 

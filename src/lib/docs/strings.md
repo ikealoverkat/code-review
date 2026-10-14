@@ -1,6 +1,6 @@
 ---
 title: Strings
-description: Words and sentences! Concatenation, comparing text, and the handy built-in String methods.
+description: Write words and sentences in Java. Concatenation, comparing text, and built-in String methods.
 order: 5
 ---
 
